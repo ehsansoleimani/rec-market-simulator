@@ -39,8 +39,9 @@ if gen_new_acc == "y":
     for i in range(num_acc_smgw):
         type = "pv" if random.randint(1,100) < perc_pv else "chp"
         # monte carlo over size here
-		owner_account = list_new_acc_owner[random.randint(1,num_acc_owners)][0]; 
-        list_new_acc_smgw.append([web3.personal.newAccount(password), "smgw", type, str(random.randint(1,10)), owner_account])
+        owner_index = random.randint(1,num_acc_owners)
+        owner_account = list_new_acc_owner[owner_index][0]
+        list_new_acc_smgw.append([web3.personal.newAccount(password), "smgw", type, str(random.randint(1,10)), owner_account, owner_index])
 
     file_smgw = open(chain_location + chain_name + "/py_script_info/list_smgw.csv","w")
     func_fileIO.writeStringArrayToNewFile(file_smgw, list_new_acc_smgw)
